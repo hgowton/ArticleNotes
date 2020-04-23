@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">MongoScraper</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/saved">Saved Articles</a>
+      </li>
+    </ul>
+    <button type="button" class="btn btn-danger">Scrape New Articles!</button>
+    <button type="button" class="btn btn-danger">Clear Articles!</button>
+  </div>
+</nav>
+{{#each articles}}
+<div class="container">{{this.title}}
+    {{!-- <div class="row">
+        <div class="col-md-10 title">{{this.title}}</div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-success save-article">Save Article</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 image">
+            <p>{{this.date}}</p>
+            <p>{{this.description}}</p>
+        </div>
+        <div class="col-md-8 info"></div>
+    </div> --}}
+</div>
+{{/each}}
+<footer>Pew Research Center Scraper</footer>
