@@ -12,25 +12,29 @@
         <a class="nav-link" href="/saved">Saved Articles</a>
       </li>
     </ul>
-    <button type="button" class="btn btn-danger">Scrape New Articles!</button>
+    <button type="button" href="/scraped" class="btn btn-danger">Scrape New Articles!</button>
     <button type="button" class="btn btn-danger">Clear Articles!</button>
   </div>
 </nav>
-{{#each articles}}
-<div class="container">{{this.title}}
-    {{!-- <div class="row">
-        <div class="col-md-10 title">{{this.title}}</div>
+{{#each article}}
+<div class="container"> 
+    <div class="row">
+        <div class="col-md-10 title">
+          <a href="{{this.link}}" target="_blank">{{this.title}}</a>
+        </div>
         <div class="col-md-2">
             <button type="button" class="btn btn-success save-article">Save Article</button>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4 image">
+        <div class="col-md-4">
+          <img src="{{this.image}}" alt="article image" />
+        </div>
+        <div class="col-md-8 info">
             <p>{{this.date}}</p>
             <p>{{this.description}}</p>
         </div>
-        <div class="col-md-8 info"></div>
-    </div> --}}
+    </div>
 </div>
 {{/each}}
 <footer>Pew Research Center Scraper</footer>

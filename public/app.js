@@ -1,11 +1,3 @@
-//Grab the articles as a json
-$.getJSON("/articles", function(data) {
-    //Print the titles of the articles to the articles id
-    //Each article has a data-id attribute to call upon later
-    for (var i=0; i < data.length; i++) {
-        $("#articles").append("<p data-id='" + date[i]._id + "'>" + data[i].title + "</p>");
-    }
-})
 
 $(document).on("click", ".articleNotes", function() {
     //CREATE Open modal

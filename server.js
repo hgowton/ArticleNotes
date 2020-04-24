@@ -5,6 +5,7 @@ var mongoose = require("mongoose");
 //scraping tools
 var axios = require("axios")
 var cheerio = require("cheerio");
+var exphbs = require("express-handlebars");
 
 //require all models
 var db = require("./models");
@@ -18,8 +19,6 @@ app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 
-var exphbs = require("express-handlebars");
-
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
@@ -32,6 +31,7 @@ mongoose.connect("mongodb://localhost/articleScraper", {useNewUrlParser: true});
 //Routes
 // get route -> index
 app.get("/", function(req, res) {
+    console.log("here")
     res.redirect("/articles");
   });
 
@@ -68,8 +68,21 @@ app.get("/scrape", function(req,res) {
 app.get("/articles", function(req,res) {
     db.Article.find({})
     .then(function(dbArticle) {
-        console.log(dbArticle)
-        res.render("index", {articles: dbArticle});
+
+        var articleArray = [];
+        for (i=0; i < dbArticle.length; i++) {
+          articleArray.push({
+            "_id": dbArticle[i]._id, 
+            "title": dbArticle[i].title, 
+            "link": dbArticle[i].link,
+            "date": dbArticle[i].date,
+            "description": dbArticle[i].description,
+            "image": dbArticle[i].image,
+            "saved": dbArticle[i].saved
+          })
+        };
+        
+        res.render("index", {article: articleArray});
     })
     .catch(function(err) {
         res.json(err);
