@@ -38,5 +38,14 @@ $(document).ready(function(){
 
     })
 
+    $("#scrape-articles").on("click", function() {
+        $.ajax("/scrape", {
+            type: "GET"
+        }).then(
+            function() {
+                location.reload()
+            });
+    });
+
     //Note Button
 });

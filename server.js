@@ -7,7 +7,7 @@ var exphbs = require("express-handlebars");
 
 //require all models
 
-var PORT = 4000;
+var PORT = 3000;
 
 var app = express();
 

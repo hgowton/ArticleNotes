@@ -46,7 +46,7 @@ router.get("/scrape", function(req,res) {
         });
 
         //Send message letting client know scraping worked
-        res.send("Scrape Complete");
+        res.redirect("/articles");  
     });
 });
 
@@ -90,7 +90,7 @@ router.get("/saved", function(req,res) {
                     "saved": dbArticle[i].saved
                 })
             };
-        res.render("index", {article: articleArray});
+        res.render("saved", {article: articleArray});
         console.log("saved: " + articleArray)
     })
     .catch(function(err) {
@@ -124,6 +124,7 @@ router.get("/deleteArticles", function(req, res) {
         if (error) {
             res.send(result)
         } else {console.log("made it")}
+        res.redirect("/articles");  
     })
 })
 
