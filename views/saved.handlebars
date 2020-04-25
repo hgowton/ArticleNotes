@@ -9,7 +9,7 @@
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
     </ul>
-    <button type="button" class="btn btn-danger">Clear Articles!</button>
+    <button type="button" class="btn btn-danger" id="delete-articles">Clear Articles!</button>
   </div>
 </nav>
 {{#each article}}
@@ -19,7 +19,7 @@
           <a href="{{this.link}}" target="_blank">{{this.title}}</a>
         </div>
         <div class="col-md-2">
-            <button type="button" class="btn btn-danger"  id="delete-article" data-id="{{this._id}}">Delete from Saved</button>
+            <button type="button" class="btn btn-danger"  id="unsaved" data-id="{{this._id}}">Delete from Saved</button>
             <button type="button" class="btn btn-success" ></button>
             <!-- Button trigger modal -->
               <button type="button" class="btn btn-primary" id="save-note" data-toggle="modal" data-target="#{{this._id}}">
