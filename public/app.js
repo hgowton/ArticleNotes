@@ -38,6 +38,22 @@ $(document).ready(function(){
 
     })
 
+    $("#save-note").on("click", function() {
+
+        var thisId = $(this).attr("data-id");
+        
+        $.ajax({
+            method: "POST",
+            url: "/articles/" + thisId,
+            data: {
+                body: $("#note-body").val()
+            }
+        }). then(function(data) {
+            console.log(data);
+            $("#note-body").val("");
+        })
+    })
+
     $("#scrape-articles").on("click", function() {
         $.ajax("/scrape", {
             type: "GET"

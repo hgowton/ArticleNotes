@@ -26,7 +26,7 @@
         <div class="col-md-4">
             <button type="button" class="btn btn-danger"  id="unsaved" data-id="{{this._id}}">Delete from Saved</button>
             <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{this._id}}" id="save-note" >
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{this._id}}" >
                 Article Notes
               </button>
 
@@ -41,11 +41,11 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    testing
+                    <textarea name="newNote" placeholder="new note" id="note-body" required></textarea>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary"  data-id="{{this._id}}">Save changes</button>
+                    <button type="button" class="btn btn-primary"  data-id="{{this._id}}" id="save-note">Save changes</button>
                   </div>
                 </div>
               </div>

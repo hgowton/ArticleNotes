@@ -98,6 +98,7 @@ router.get("/saved", function(req,res) {
     });
 });
 
+//add saved article
 router.put("/saved/:id", function(req,res) {
     db.Article.updateOne({ _id: req.params.id}, {$set: {"saved": true}})
     .then(function(dbArticle) {
@@ -119,6 +120,7 @@ router.put("/unsave/:id", function(req,res) {
     });
 });
 
+//clears any unsaved articles from database
 router.get("/deleteArticles", function(req, res) {
     db.Article.deleteMany({saved: false}, function(error, result) {
         if (error) {
