@@ -17,9 +17,25 @@
 </nav>
 <div></div>
 {{#each article}}
-{{#unless this.saved}}
-{{>saved/saved-block saved=true}}
+<div class="container"> 
+    <div class="row">
+        <div class="col-md-10 title">
+          <a href="{{this.link}}" target="_blank">{{this.title}}</a>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-success"  id="save-article" data-id="{{this._id}}">Save Article</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+          <img src="{{this.image}}" alt="article image" />
+        </div>
+        <div class="col-md-8 info">
+            <p>{{this.date}}</p>
+            <p>{{this.description}}</p>
+        </div>
+    </div>
+</div>
 
-{{/unless}}
 {{/each}}
 <footer>Pew Research Center Scraper</footer>

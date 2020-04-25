@@ -14,7 +14,7 @@ $(document).ready(function(){
             })
     })
 
-        //Updates the article to saved: true in the database
+        //Updates the article to saved: false in the database
         $(document).on("click", "#unsaved", function() {
             var id = $(this).data("id");
     
