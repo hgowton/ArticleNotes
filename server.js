@@ -30,7 +30,7 @@ mongoose.connect("mongodb://localhost/articleScraper", {useNewUrlParser: true});
 
 //Routes
 // get route -> index
-app.get("/", function(req, res) {
+app.use("/", function(req, res) {
     console.log("here")
     res.redirect("/articles");
   });
@@ -68,26 +68,67 @@ app.get("/scrape", function(req,res) {
 app.get("/articles", function(req,res) {
     db.Article.find({})
     .then(function(dbArticle) {
-
-        var articleArray = [];
-        for (i=0; i < dbArticle.length; i++) {
-          articleArray.push({
-            "_id": dbArticle[i]._id, 
-            "title": dbArticle[i].title, 
-            "link": dbArticle[i].link,
-            "date": dbArticle[i].date,
-            "description": dbArticle[i].description,
-            "image": dbArticle[i].image,
-            "saved": dbArticle[i].saved
-          })
-        };
-        
+            var articleArray = [];
+            for (i=0; i < dbArticle.length; i++) {
+                articleArray.push({
+                    "_id": dbArticle[i]._id, 
+                    "title": dbArticle[i].title, 
+                    "link": dbArticle[i].link,
+                    "date": dbArticle[i].date,
+                    "description": dbArticle[i].description,
+                    "image": dbArticle[i].image,
+                    "saved": dbArticle[i].saved
+                })
+            };
         res.render("index", {article: articleArray});
+        console.log("NOT saved: " + articleArray)
+
     })
     .catch(function(err) {
         res.json(err);
     });
 });
+
+app.get("/saved", function(req,res) {
+    db.Article.find({saved: false})
+    .then(function(dbArticle) {
+            var articleArray = [];
+            for (i=0; i < dbArticle.length; i++) {
+                articleArray.push({
+                    "_id": dbArticle[i]._id, 
+                    "title": dbArticle[i].title, 
+                    "link": dbArticle[i].link,
+                    "date": dbArticle[i].date,
+                    "description": dbArticle[i].description,
+                    "image": dbArticle[i].image,
+                    "saved": dbArticle[i].saved
+                })
+            };
+        res.render("index", {article: articleArray});
+        console.log("saved: " + articleArray)
+    })
+    .catch(function(err) {
+        res.json(err);
+    });
+});
+
+app.put("/saved/:id", function(req,res) {
+    db.Article.updateOne({ _id: req.params.id}, {$set: {"saved": true}})
+    .then(function(dbArticle) {
+        res.json(dbArticle);
+    })
+    .catch(function(error) {
+        res.json(error);
+    });
+});
+
+app.get("/deleteArticles", function(req, res) {
+    db.Article.remove({saved: false}, function(error, result) {
+        if (error) {
+            res.send(result)
+        }
+    })
+})
 
 //route for grabbing a specific Article by id, populate with it's note
 app.get("/articles/:id", function(req, res) {

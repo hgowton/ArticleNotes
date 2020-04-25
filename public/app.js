@@ -1,24 +1,29 @@
 
-$(document).on("click", ".articleNotes", function() {
-    //CREATE Open modal
+$(document).ready(function(){
 
-    //Ajax call for the article
-    $.ajax({
-        method: "GET", 
-        url:"/articles" + thisId
+    //Updates the article to saved: true in the database
+    $(document).on("click", "#save-article", function() {
+        var id = $(this).data("id");
+
+        console.log("Saving article " + id);
+        $.ajax("/saved/" + id, {
+            type: "PUT"
+        }).then(
+            function() {
+                location.reload();
+            })
     })
-    .then(function(data) {
-        console.log(data);
-        //Article Title  
-        $("#notes").append("<h2>" + data.title + "</h2>");
-        //create note
-        $("#notes").append("<textarea id='note-input' name='newNote'>");
-        //button to save note
-        <button type="button" class="btn btn-success">Success</button>
-        $("#notes").append("<button type='button' class='btn btn-success' id='savenote' data-id='" + data._id + "'> Save Note<button>");
-        
-        if (data.note) {
-            $("#note-input").val(data.note.title);
-        }
-    });
+
+    //Button listener to delete all articles from database
+    $(".deleteArticles").on("click", function() {
+        $.ajax("/deleteArticles", {
+            type: "GET"
+        }).then(
+            function() {
+                location.reload()
+            })
+
+    })
+
+    //Note Button
 });
