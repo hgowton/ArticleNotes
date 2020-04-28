@@ -130,9 +130,8 @@ router.get("/deleteArticles", function(req, res) {
     })
 })
 
-//route for grabbing a specific Article by id, populate with it's note
-router.get("/articles/:id", function(req, res) {
-    db.Article.findOne({ _id: req.params.id})
+router.get("/articles/:id", function(req,res) {
+    db.Article.findOneAndUpdate({_id: req.params.id})
     .populate("note")
     .then(function(dbArticle) {
         res.json(dbArticle);
@@ -142,16 +141,19 @@ router.get("/articles/:id", function(req, res) {
     });
 });
 
-//route for saving/updating an Article's associated note
-router.post("/articles/:id", function(req, res) {
+router.post("/articles/:id", function(req,res) {
     db.Note.create(req.body)
     .then(function(dbNote) {
-        return db.Article.findOneAndUpdate({ _id: req.params.id}, {note: dbNote._id}, {new: true});
+        return db.Article.findOneAndUpdate({_id: req.params.id}, {$push: { note: dbNote._id}}, {new: true});
     })
     .then(function(dbArticle) {
-        res.json(dbArticle);
+        res.json(dbArticle)
     })
-    .catch(function(error) {
-        res.json(err);
-    })
-})
+    .catch(function(err) {
+        res.json(err)
+    });
+});
+
+
+
+
