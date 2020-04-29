@@ -48,8 +48,6 @@ $(document).ready(function(){
 
     })
 
-    // let info = $("<div>").addClass("specialNote") 
-
     $(document).on("click", ".article-notes", function() {
         var thisId = $(this).attr("data-id");
       

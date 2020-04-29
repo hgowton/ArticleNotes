@@ -150,6 +150,7 @@ router.get("/articles/:id", function(req,res) {
     });
 });
 
+//creates a new note for the article
 router.post("/articles/:id", function(req,res) {
     db.Note.create(req.body)
     .then(function(dbNote) {
