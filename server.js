@@ -5,9 +5,7 @@ var mongoose = require("mongoose");
 //scraping tools
 var exphbs = require("express-handlebars");
 
-//require all models
-
-var PORT = 3000;
+var PORT = process.env.PORT || 8080;
 
 var app = express();
 
