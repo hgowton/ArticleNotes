@@ -5,52 +5,24 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
+      <button type="button" href="/scrape" class="btn btn-primary" id="scrape-articles">Scrape New Articles!</button>
       <button type="button" class="btn btn-danger" id="delete-articles">Clear Articles!</button>
-      <a class="nav-item nav-link" href="/saved">Home <span class="sr-only">(current)</span></a>  |  
-      <a class="nav-item nav-link active" href="/articles">Saved Articles</a>
+      <a class="nav-item nav-link active" href="/articles">Home <span class="sr-only">(current)</span></a>  |  
+      <a class="nav-item nav-link" href="/saved">Saved Articles</a>
 
     </div>
   </div>
 </nav>
 
+
 {{#each article}}
-{{#if saved}}
 <div class="container"> 
     <div class="row">
-        <div class="col-md-8 title">
+        <div class="col-md-10 title">
           <a href="{{this.link}}" target="_blank">{{this.title}}</a>
         </div>
-        <div class="col-md-4">
-            <button type="button" class="btn btn-danger"  id="unsaved" data-id="{{this._id}}">Delete from Saved</button>
-            <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-toggle="modal" id="article-notes" data-id="{{this._id}}" data-target="#{{this._id}}" >
-                Article Notes
-              </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="notesModal" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{this.title}}</h5>
-                    {{#each Article}}
-                    <div>
-                      <p>{{this.note}}</p>
-                    <button type="button" class="btn btn-danger" id="{{this._id}}" data-id="{{this._id}}">x</button>
-                    </div>
-                    {{/each}}
-                  </div>
-                  <div class="modal-body">
-                    <textarea name="newNote" placeholder="new note" id="note-body" required></textarea>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary"  data-id="{{this._id}}" id="save-note">Save changes</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+        <div class="col-md-2">
+            <button type="button" class="btn btn-success"  id="save-article" data-id="{{this._id}}">Save Article</button>
         </div>
     </div>
     <div class="row">
@@ -63,6 +35,6 @@
         </div>
     </div>
 </div>
-{{/if}}
+
 {{/each}}
 <footer>Pew Research Center Scraper</footer>

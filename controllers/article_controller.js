@@ -76,7 +76,7 @@ router.get("/articles", function(req,res) {
 });
 
 router.get("/saved", function(req,res) {
-    db.Article.find({saved: false})
+    db.Article.find({saved: true})
     .then(function(dbArticle) {
             var articleArray = [];
             for (i=0; i < dbArticle.length; i++) {
@@ -131,10 +131,18 @@ router.get("/deleteArticles", function(req, res) {
 })
 
 router.get("/articles/:id", function(req,res) {
-    db.Article.findOneAndUpdate({_id: req.params.id})
+    db.Article.find({_id: req.params.id})
     .populate("note")
     .then(function(dbArticle) {
-        res.json(dbArticle);
+        var noteArray = [];
+        for (i=0; i < dbArticle.note.length; i++) {
+            noteArray.push({
+                "id": dbArticle.note[i]._id,
+                "date": dbArticle.note[i].date, 
+                "body": dbArticle.note[i].body, 
+            })
+        };
+        res.json(noteArray);
     })
     .catch(function(err) {
         res.json(err)
@@ -148,6 +156,7 @@ router.post("/articles/:id", function(req,res) {
     })
     .then(function(dbArticle) {
         res.json(dbArticle)
+        res.redirect("/saved");  
     })
     .catch(function(err) {
         res.json(err)

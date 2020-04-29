@@ -48,6 +48,8 @@ $(document).ready(function(){
 
     })
 
+    let info = $("<div>").addClass("specialNote") 
+
     $(document).on("click", "#article-notes", function() {
         var thisId = $(this).attr("data-id");
       
@@ -56,26 +58,29 @@ $(document).ready(function(){
           url: "/articles/" + thisId
         })
         .then(function(data) {
+            for (i=0; i < data.length; i++) {
+                let noteInfo = $("div").append(
+                $("<p>").text(data[i].body),
+                $("<p>").text(data[i].date),
+                $("<button>").attr("class='btn btn-danger' id=" + data[i]._id + " data-id="+ this._id + ">x<")
+                )}
+            info.append(noteInfo)
         })
       })
 
+    //Adding a note for an article 
     $(document).on("click", "#save-note", function() {
         var thisId = $(this).attr("data-id");
-        $.ajax({
-            method: "GET",
-            url: "/articles/" + thisId
-        }).then(function(data) {
-            console.log(thisId + data)
-        })
         
         $.ajax({
             method: "POST",
             url: "/articles/" + thisId,
             data: {
-                body: $("#note-body").val()
+                body: $("#"+thisId+"-notebody").val()
             }
         }). then(function(data) {
-            $("#note-body").empty()
+            $("#"+thisId+"-notebody").empty()
+            // console.log("the id: " + thisId)
             location.reload()
         })
     })
