@@ -28,7 +28,7 @@ app.use(routes);
 app.use(express.static("public"));
 
 //Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/articleScraper", {useNewUrlParser: true});
+mongoose.connect("mongodb://localhost/articleScraper", { useUnifiedTopology: true });
 
 //Start the server
 app.listen(PORT, function() {
