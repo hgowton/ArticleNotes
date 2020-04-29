@@ -131,7 +131,7 @@ router.get("/deleteArticles", function(req, res) {
 })
 
 router.get("/articles/:id", function(req,res) {
-    db.Article.find({_id: req.params.id})
+    db.Article.findOne({_id: req.params.id})
     .populate("note")
     .then(function(dbArticle) {
         var noteArray = [];
@@ -139,9 +139,10 @@ router.get("/articles/:id", function(req,res) {
             noteArray.push({
                 "id": dbArticle.note[i]._id,
                 "date": dbArticle.note[i].date, 
-                "body": dbArticle.note[i].body, 
+                "body": dbArticle.note[i].body 
             })
         };
+        console.log("notearray: " + noteArray)
         res.json(noteArray);
     })
     .catch(function(err) {

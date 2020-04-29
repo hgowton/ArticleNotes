@@ -48,9 +48,9 @@ $(document).ready(function(){
 
     })
 
-    let info = $("<div>").addClass("specialNote") 
+    // let info = $("<div>").addClass("specialNote") 
 
-    $(document).on("click", "#article-notes", function() {
+    $(document).on("click", ".article-notes", function() {
         var thisId = $(this).attr("data-id");
       
         $.ajax({
@@ -58,14 +58,15 @@ $(document).ready(function(){
           url: "/articles/" + thisId
         })
         .then(function(data) {
+            console.log(data)
+            let noteInfo = $("<div>")
             for (i=0; i < data.length; i++) {
-                let noteInfo = $("div").append(
-                $("<p>").text(data[i].body),
+                noteInfo.append($("<p>").text(data[i].body),
                 $("<p>").text(data[i].date),
-                $("<button>").attr("class='btn btn-danger' id=" + data[i]._id + " data-id="+ this._id + ">x<")
+                $("<button>").addClass("btn btn-danger").attr("id", data[i]._id).attr("data-id", data[i]._id).text("x")
                 )}
-            info.append(noteInfo)
-        })
+                $("#"+thisId+"-specialNote").append(noteInfo)
+            })
       })
 
     //Adding a note for an article 
