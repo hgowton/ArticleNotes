@@ -3,7 +3,8 @@ var Schema = mongoose.Schema
 
 var NoteSchema = new Schema({
     body: {
-        type: String
+        type: String,
+        minlength: 1
     },
     date: { 
         type: Date,

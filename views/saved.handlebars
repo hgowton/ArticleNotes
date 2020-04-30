@@ -11,7 +11,7 @@
 
 {{#each article}}
 {{#if saved}}
-<div class="container"> 
+<div class="container article-card"> 
     <div class="row">
         <div class="col-md-8 title">
           <a href="{{this.link}}" target="_blank">{{this.title}}</a>
@@ -34,7 +34,7 @@
  
                   </div>
                   <div class="modal-body">
-                    <textarea name="newNote" placeholder="new note" id="{{this._id}}-notebody" required></textarea>
+                    <textarea rows="3" cols="75" wrap="hard" name="newNote" placeholder="new note" id="{{this._id}}-notebody" required></textarea>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -47,10 +47,10 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
-          <img src="{{this.image}}" alt="article image" />
+        <div class="col-md-3">
+          <img src="{{this.image}}" alt="article image" class="articleImg "/>
         </div>
-        <div class="col-md-8 info">
+        <div class="col-md-9 article-info">
             <p>{{this.date}}</p>
             <p>{{this.description}}</p>
         </div>
@@ -58,4 +58,12 @@
 </div>
 {{/if}}
 {{/each}}
-<footer>Pew Research Center Scraper</footer>
+<footer >
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p id="pew">Pew Research Center Scraper </p>  
+      </div>
+    </div>
+  </div>
+</footer>

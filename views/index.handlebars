@@ -10,7 +10,7 @@
 
 
 {{#each article}}
-<div class="container"> 
+<div class="container article-card"> 
     <div class="row">
         <div class="col-md-10 title">
           <a href="{{this.link}}" target="_blank">{{this.title}}</a>
@@ -20,10 +20,10 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
-          <img src="{{this.image}}" alt="article image" />
+        <div class="col-md-3">
+          <img src="{{this.image}}" alt="article image" class="articleImg img-fluid" />
         </div>
-        <div class="col-md-8 info">
+        <div class="col-md-9 article-info">
             <p>{{this.date}}</p>
             <p>{{this.description}}</p>
         </div>
@@ -31,4 +31,12 @@
 </div>
 
 {{/each}}
-<footer>Pew Research Center Scraper</footer>
+<footer >
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p id="pew">Pew Research Center Scraper </p>  
+      </div>
+    </div>
+  </div>
+</footer>
