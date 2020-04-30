@@ -15,7 +15,6 @@ $(document).ready(function(){
     $(document).on("click", "#save-article", function() {
         var id = $(this).data("id");
 
-        console.log("Saving article " + id);
         $.ajax("/saved/" + id, {
             type: "PUT"
         }).then(
@@ -28,7 +27,6 @@ $(document).ready(function(){
     $(document).on("click", "#unsaved", function() {
         var id = $(this).data("id");
 
-        console.log("Remove Saved Article " + id);
         $.ajax("/unsave/" + id, {
             type: "PUT"
         }).then(
@@ -56,12 +54,11 @@ $(document).ready(function(){
           url: "/articles/" + thisId
         })
         .then(function(data) {
-            console.log(data)
             let noteInfo = $("<div>")
             for (i=0; i < data.length; i++) {
-                noteInfo.append($("<p>").text(data[i].body),
-                $("<p>").text(data[i].date),
-                $("<button>").addClass("btn btn-danger").attr("id", data[i]._id).attr("data-id", data[i]._id).text("x")
+                noteInfo.append($("<div>").addClass("col-sm-7").text(data[i].body),
+                $("<div>").addClass("col-sm-4").text("Date made: " + (data[i].date).slice(0, 10)),
+                $("<button>").addClass("btn btn-danger col-sm-1").attr("id", "delete-note").attr("data-id", data[i].id).text("x")
                 )}
                 $("#"+thisId+"-specialNote").append(noteInfo)
             })
@@ -79,9 +76,21 @@ $(document).ready(function(){
             }
         }). then(function(data) {
             $("#"+thisId+"-notebody").empty()
-            // console.log("the id: " + thisId)
             location.reload()
         })
+    })
+
+    //On click event listener to delete a specific note
+    $(document).on("click", "#delete-note", function() {
+        var thisId = $(this).attr("data-id");
+        console.log("here")
+        $.ajax({
+            method: "DELETE",
+            url: "/deleteNote/" + thisId
+        }).then(
+            function() {
+                location.reload()
+            })
     })
 
 

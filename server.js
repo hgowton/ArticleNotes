@@ -5,6 +5,7 @@ var mongoose = require("mongoose");
 //scraping tools
 var exphbs = require("express-handlebars");
 
+//setting the port for Heroku
 var PORT = process.env.PORT || 8080;
 
 var app = express();
@@ -26,8 +27,11 @@ app.use(routes);
 //Make public a static folder (for styling)
 app.use(express.static("public"));
 
-//Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/articleScraper", { useUnifiedTopology: true });
+// Connect to Mongo
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/articleScraper";
+mongoose.connect(MONGODB_URI, {
+  useNewUrlParser: true, useFindAndModify: false
+});
 
 //Start the server
 app.listen(PORT, function() {

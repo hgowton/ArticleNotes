@@ -125,7 +125,7 @@ router.get("/deleteArticles", function(req, res) {
     db.Article.deleteMany({saved: false}, function(error, result) {
         if (error) {
             res.send(result)
-        } else {console.log("made it")}
+        } 
         res.redirect("/articles");  
     })
 })
@@ -142,7 +142,6 @@ router.get("/articles/:id", function(req,res) {
                 "body": dbArticle.note[i].body 
             })
         };
-        console.log("notearray: " + noteArray)
         res.json(noteArray);
     })
     .catch(function(err) {
@@ -165,6 +164,13 @@ router.post("/articles/:id", function(req,res) {
     });
 });
 
+//deletes a specific note
+router.delete("/deleteNote/:id", function(req, res) {
+    db.Note.deleteOne({_id: req.params.id}, function(error, result) {
+        if (error) {
+            res.send(result)
+        }
+            // res.redirect("/saved");  
+    })
 
-
-
+})
