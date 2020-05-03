@@ -64,6 +64,8 @@ $(document).ready(function(){
             })
       })
 
+
+
     //Adding a note for an article 
     $(document).on("click", "#save-note", function() {
         var thisId = $(this).attr("data-id");
@@ -74,7 +76,7 @@ $(document).ready(function(){
             data: {
                 body: $("#"+thisId+"-notebody").val()
             }
-        }). then(function(data) {
+        }).then(function(data) {
             $("#"+thisId+"-notebody").empty()
             location.reload()
         })
@@ -83,14 +85,23 @@ $(document).ready(function(){
     //On click event listener to delete a specific note
     $(document).on("click", "#delete-note", function() {
         var thisId = $(this).attr("data-id");
-        console.log("here")
         $.ajax({
             method: "DELETE",
             url: "/deleteNote/" + thisId
+        }).then(function(data) {
+                console.log("testing")
+                if (data.ok) {
+                    $.remove("#"+thisId+"-specialNote")
+                }
+            })
+
+        $.ajax("/saved", {
+            type: "GET"
         }).then(
             function() {
                 location.reload()
             })
+
     })
 
 

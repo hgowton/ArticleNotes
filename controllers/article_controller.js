@@ -166,11 +166,9 @@ router.post("/articles/:id", function(req,res) {
 
 //deletes a specific note
 router.delete("/deleteNote/:id", function(req, res) {
-    db.Note.deleteOne({_id: req.params.id}, function(error, result) {
-        if (error) {
-            res.send(result)
-        }
-            // res.redirect("/saved");  
+    db.Note.deleteOne({_id: req.params.id}).then(function(result) {
+        res.json(result) 
+    }).catch(function(err) {
+        if(err) throw error
     })
-
 })

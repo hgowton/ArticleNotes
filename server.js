@@ -6,7 +6,7 @@ var mongoose = require("mongoose");
 var exphbs = require("express-handlebars");
 
 //setting the port for Heroku
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 3000;
 
 var app = express();
 
