@@ -32,5 +32,16 @@ Enables user to scrape the lastest Pew Research Center Articles focused in Ameri
 1. In the Nav bar, click on **Saved Articles** to see snippets of any articles you have previously saved.
 1. On the `Saved Articles` page, click on the
    1. **Delete from Saved** button to completely remove the article from your list.
-   1. **Article Notes** button to write a note on the article.  The Article Notes modal will keep all saved notes, and allow you to delete any previous notes.
    1. title to see the full article.
+   1. **Article Notes** a notes modal will display past notes, and enable the user to create new notes.
+![SavedArticle](/images/articleSaved.png)
+
+1. To create and delete article notes
+   1. On the `Saved Articles` page, click the **Article Notes** button.
+   1. The modal will show any saved article notes.
+   1. Type a new note in the text box and click **Save Note**.
+   1. Delete any saved notes by clicking the **x** button. 
+   1. Return to the Save Notes page by clicking the **Close** button.
+![notesmodal](/images/notes.gif)
+
+
