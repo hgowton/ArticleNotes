@@ -20,13 +20,15 @@ Enables user to scrape the lastest Pew Research Center Articles focused in Ameri
 ## Instructions
 1. Access the [Pew Article Scrapper Homepage](https://gentle-ocean-77475.herokuapp.com/articles)
 1. On the `HomePage`, users are presented with snippets of Pew Research Articles focused in the United States.
-![Article](/images/articleStart.gif)
+![ArticleScrape](/images/articleStart.gif)
    1. The **Clear Articles** button, will remove any currently loaded articles.
    1. Use the **Scrape New Articles** button to be presented with updated article snippets from the Pew Research Center.
-   
+
 1. For any article, click on the
    1. title to see the full article.
    1. save article button to save the article to read later.
+   ![ArticleMain](/images/articleMain.png)
+
 1. In the Nav bar, click on **Saved Articles** to see snippets of any articles you have previously saved.
 1. On the `Saved Articles` page, click on the
    1. **Delete from Saved** button to completely remove the article from your list.
