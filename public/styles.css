@@ -1,13 +1,29 @@
 body {
-    background-color: lightblue;
+    background-image: url('https://cdn.pixabay.com/photo/2016/02/01/00/56/news-1172463_960_720.jpg');
     font-family: 'News Cycle', sans-serif;
 }
+
+.navbar {
+    background-color: whitesmoke;
+    padding: 10px 0px;
+}
+
+.active {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.nav-item {
+    margin: 0px 10px;
+}
+
 .article-card {
     border-radius: 5px;
     margin-bottom: 8px;
-    padding: 5px; 
+    padding: 15px; 
     background-color: white;
-    box-shadow: 0px 0px 5px 3px white;
+    box-shadow: 1px 1px 25px #111,
+    0px 0px 25px white;
 }
 
 .articleImg {
@@ -59,6 +75,10 @@ footer {
     background-color: slategray;
     color: white;
     text-align: right;
+}
+
+.bottom { 
+    height: 35px;
 }
 
 #pew {

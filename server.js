@@ -30,7 +30,7 @@ app.use(express.static("public"));
 // Connect to Mongo
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/articleScraper";
 mongoose.connect(MONGODB_URI, {
-  useNewUrlParser: true, useFindAndModify: false
+  useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true
 });
 
 //Start the server
